@@ -16,7 +16,11 @@ class Queue {
 
     // Push element x to the back of queue.
     public void enqueue(int x) {
-
+        stack1.push(x);
+    }
+    public void move_Stack1to_Stack2(){
+        while(!stack1.isEmpty())
+        stack2.push(stack1.pop());
     }
 
     // Removes the element from in front of queue.
