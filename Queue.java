@@ -33,7 +33,9 @@ class Queue {
     
     // Get the front element.
     public int peek() {
-
+        if(empty())throw new NoSuchElementException("Queue underflow");
+        if(stack2.isEmpty())move_Stack1to_Stack2();
+        return stack2.peek();
     }
     
     // Return whether the queue is empty.
