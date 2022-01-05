@@ -24,8 +24,11 @@ class Queue {
     }
 
     // Removes the element from in front of queue.
+    //for condition where stack2 is empty, first move operation is done, so the time complexity will be O(N).
     public int dequeue() {
-
+        if(empty())throw new NoSuchElementException("queue underflow");
+        if(stack2.isEmpty())move_Stack1to_Stack2();
+        return stack2.peek();
     }
     
     // Get the front element.
