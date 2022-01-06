@@ -5,34 +5,47 @@ import java.io.*;
 import java.util.*;
 
 class Queue {
+    private Stack<Integer>stack1;
+    private Stack<Integer>stack2;
 
 
     public Queue() {
-
+        stack1 = new Stack<Integer>();
+        stack2 = new Stack<Integer>();
     }
 
     // Push element x to the back of queue.
     public void enqueue(int x) {
-
+        stack1.push(x);
+    }
+    public void move_Stack1to_Stack2(){
+        while(!stack1.isEmpty())
+        stack2.push(stack1.pop());
     }
 
     // Removes the element from in front of queue.
+    //for condition where stack2 is empty, first move operation is done, so the time complexity will be O(N).
     public int dequeue() {
-
+        if(empty())throw new NoSuchElementException("Queue underflow");
+        if(stack2.isEmpty())move_Stack1to_Stack2();
+        return stack2.pop();
     }
     
     // Get the front element.
     public int peek() {
-
+        if(empty())throw new NoSuchElementException("Queue underflow");
+        if(stack2.isEmpty())move_Stack1to_Stack2();
+        return stack2.peek();
     }
     
     // Return whether the queue is empty.
     public boolean empty() {
-
+        return stack1.isEmpty() && stack2.isEmpty();
     }
 
     // Return the number of elements in queue.
-    public boolean size() {
+    public int size() {
+        return stack1.size()+stack2.size();
 
     }
     
@@ -51,5 +64,6 @@ class Queue {
                 System.out.println(queue.peek());
             } 
         }
+        scan.close();
     }
 }
